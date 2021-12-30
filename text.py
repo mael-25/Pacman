@@ -1,6 +1,7 @@
 import pygame
 from vector import Vector2
 from constants import *
+from highscores import read
 
 class Text(object):
     def __init__(self, text, color, x, y, size, time=None, id=None, visible=True):
@@ -43,10 +44,14 @@ class Text(object):
 
 class TextGroup(object):
     def __init__(self):
+        highscore = read()
+        self.highscore = str(highscore["1"]["score"])
+        self.highscore_name = highscore["1"]["name"]
         self.nextid = 10
         self.alltext = {}
         self.setupText()
         self.showText(READYTXT)
+        # self.showText(HIGHSCORETXT)
 
     def addText(self, text, color, x, y, size, time=None, id=None):
         self.nextid += 1
@@ -63,8 +68,11 @@ class TextGroup(object):
         self.alltext[READYTXT] = Text("READY!", YELLOW, 11.25*TILEWIDTH, 20*TILEHEIGHT, size, visible=False)
         self.alltext[PAUSETXT] = Text("PAUSED!", YELLOW, 10.625*TILEWIDTH, 20*TILEHEIGHT, size, visible=False)
         self.alltext[GAMEOVERTXT] = Text("GAMEOVER!", YELLOW, 10*TILEWIDTH, 20*TILEHEIGHT, size, visible=False)
+        self.alltext[HIGHSCORETXT] = Text(self.highscore.zfill(8), YELLOW, 10*TILEWIDTH, TILEHEIGHT, size, visible=True)
+        self.alltext[HIGHSCOREPERSONTXT] = Text(self.highscore_name, YELLOW, 10*TILEWIDTH,0 , size, visible=True)
         self.addText("SCORE", WHITE, 0, 0, size)
         self.addText("LEVEL", WHITE, 23*TILEWIDTH, 0, size)
+        # self.addText("BESTSCORE", WHITE, 23*TILEWIDTH, 0, size)
 
     def update(self, dt):
         for tkey in list(self.alltext.keys()):

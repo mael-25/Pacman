@@ -11,9 +11,11 @@ from text import TextGroup
 from sprites import LifeSprites
 from sprites import MazeSprites
 from mazedata import MazeData
+from highscores import Highscore
 
 class GameController(object):
     def __init__(self):
+        self.name = input("Name: ") ## temporary before i add homescreen
         pygame.init()
         self.screen = pygame.display.set_mode(SCREENSIZE, 0, 32)
         self.background = None
@@ -23,7 +25,7 @@ class GameController(object):
         self.fruit = None
         self.pause = Pause(True)
         self.level = 0
-        self.lives = 5
+        self.lives = 5 
         self.score = 0
         self.textgroup = TextGroup()
         self.lifesprites = LifeSprites(self.lives)
@@ -32,6 +34,7 @@ class GameController(object):
         self.flashTimer = 0
         self.fruitCaptured = []
         self.mazedata = MazeData()
+        self.highscores = Highscore()
         # self.mazesprites = MazeSprites(self.mazedata.obj.name+".txt", self.mazedata.obj.name+"_rotation.txt")
 
     def setBackground(self):
@@ -152,6 +155,7 @@ class GameController(object):
                         self.pacman.die()
                         self.ghosts.hide()
                         if self.lives <= 0:
+                            self.highscores.edit(self.score, self.name)
                             self.textgroup.showText(GAMEOVERTXT)
                             self.pause.setPause(pauseTime=3, func=self.restartGame)
                         else:
