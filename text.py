@@ -1,7 +1,7 @@
 import pygame
 from vector import Vector2
 from constants import *
-from highscores import read
+
 
 class Text(object):
     def __init__(self, text, color, x, y, size, time=None, id=None, visible=True):
@@ -43,8 +43,9 @@ class Text(object):
 
 
 class TextGroup(object):
-    def __init__(self):
-        highscore = read()
+    def __init__(self, highscore):
+        self.highscoreClass = highscore()
+        highscore = self.highscoreClass.read()
         self.highscore = str(highscore["1"]["score"])
         self.highscore_name = highscore["1"]["name"]
         self.nextid = 10
@@ -79,6 +80,10 @@ class TextGroup(object):
             self.alltext[tkey].update(dt)
             if self.alltext[tkey].destroy:
                 self.removeText(tkey)
+
+        highscore = self.highscoreClass.read()
+        self.highscore = str(highscore["1"]["score"])
+        self.highscore_name = highscore["1"]["name"]
 
     def showText(self, id):
         self.hideText()

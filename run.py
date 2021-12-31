@@ -25,9 +25,9 @@ class GameController(object):
         self.fruit = None
         self.pause = Pause(True)
         self.level = 0
-        self.lives = 5 
+        self.lives = 5
         self.score = 0
-        self.textgroup = TextGroup()
+        self.textgroup = TextGroup(Highscore)
         self.lifesprites = LifeSprites(self.lives)
         self.flashBG = False
         self.flashTime = 0.2
@@ -57,6 +57,7 @@ class GameController(object):
         self.pacman = Pacman(self.nodes.getNodeFromTiles(*self.mazedata.obj.pacmanStart))
         self.pellets = PelletGroup(self.mazedata.obj.name+".txt")
         self.ghosts = GhostGroup(self.nodes.getStartTempNode(), self.pacman)
+        self.highscores.load_score()
 
         self.ghosts.pinky.setStartNode(self.nodes.getNodeFromTiles(*self.mazedata.obj.addOffset(2, 3)))
         self.ghosts.inky.setStartNode(self.nodes.getNodeFromTiles(*self.mazedata.obj.addOffset(0, 3)))
@@ -157,7 +158,7 @@ class GameController(object):
                         if self.lives <= 0:
                             self.highscores.edit(self.score, self.name)
                             self.textgroup.showText(GAMEOVERTXT)
-                            self.pause.setPause(pauseTime=3, func=self.restartGame)
+                            self.pause.setPause(pauseTime=7, func=self.restartGame)
                         else:
                             self.pause.setPause(pauseTime=3, func=self.resetLevel)
 
