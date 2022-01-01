@@ -158,6 +158,7 @@ class GameController(object):
                         if self.lives <= 0:
                             self.highscores.edit(self.score, self.name)
                             self.textgroup.showText(GAMEOVERTXT)
+                            self.textgroup.updateHighScore()
                             self.pause.setPause(pauseTime=7, func=self.restartGame)
                         else:
                             self.pause.setPause(pauseTime=3, func=self.resetLevel)

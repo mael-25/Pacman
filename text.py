@@ -81,10 +81,6 @@ class TextGroup(object):
             if self.alltext[tkey].destroy:
                 self.removeText(tkey)
 
-        highscore = self.highscoreClass.read()
-        self.highscore = str(highscore["1"]["score"])
-        self.highscore_name = highscore["1"]["name"]
-
     def showText(self, id):
         self.hideText()
         self.alltext[id].visible = True
@@ -99,6 +95,13 @@ class TextGroup(object):
 
     def updateLevel(self, level):
         self.updateText(LEVELTXT, str(level + 1).zfill(3))
+
+    def updateHighScore(self):
+        highscore = self.highscoreClass.read()
+        self.highscore = str(highscore["1"]["score"])
+        self.highscore_name = highscore["1"]["name"]
+        self.updateText(HIGHSCORETXT, self.highscore.zfill(8))
+        self.updateText(HIGHSCOREPERSONTXT, self.highscore_name)
 
     def updateText(self, id, value):
         if id in self.alltext.keys():

@@ -1,42 +1,42 @@
 {
     "1": {
-        "score": 6320,
+        "score": 9680,
         "name": "Mael"
     },
     "2": {
+        "score": 6320,
+        "name": "Mael"
+    },
+    "3": {
         "score": 4540,
         "name": "Nicolas"
     },
-    "3": {
+    "4": {
         "score": 300,
         "name": "Mael"
     },
-    "4": {
-        "score": 8,
-        "name": "Robert"
-    },
     "5": {
-        "score": 7,
-        "name": "Robert"
-    },
-    "6": {
-        "score": 6,
-        "name": "Robert"
-    },
-    "7": {
         "score": 5,
         "name": "Robert"
     },
-    "8": {
+    "6": {
         "score": 4,
         "name": "Robert"
     },
-    "9": {
+    "7": {
         "score": 3,
         "name": "Robert"
     },
-    "10": {
+    "8": {
         "score": 2,
         "name": "Robert"
+    },
+    "9": {
+        "score": 0,
+        "name": "Nicolas"
+    },
+    "10": {
+        "score": 0,
+        "name": "Mael"
     }
 }
