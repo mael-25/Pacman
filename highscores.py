@@ -28,7 +28,7 @@ class Highscore():
     def convertJsonToLst(self, debug=False):##Completed
         lst = list()
         for x in range(len(self.highscores)):
-            lst.append((self.highscores[str(x+1)]["score"], 1, self.highscores[str(x+1)]["name"])) 
+            lst.append((self.highscores[str(x+1)]["score"], 10-x, self.highscores[str(x+1)]["name"])) 
         
         self.highscoreslst = lst
         if debug: print(self.highscoreslst)
